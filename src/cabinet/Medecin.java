@@ -35,12 +35,6 @@ public class Medecin extends Personne {
                 getEmail().equals(medecin.getEmail());
     }
 
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (specialite != null ? specialite.hashCode() : 0);
-        return result;
-    }
 
     public void consulterPlanning() {
         if (cabinet == null) {
