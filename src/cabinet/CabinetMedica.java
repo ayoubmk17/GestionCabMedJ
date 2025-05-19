@@ -208,4 +208,40 @@ public class CabinetMedica {
             System.out.println(p);
         }
     }
+
+    public void afficherStatistiques() {
+        System.out.println("\n--- Statistiques du cabinet ---");
+        System.out.println("----------------------------------------");
+
+        // Statistiques générales
+        int nbMedecins = listeMed.size();
+        int nbPatients = listePatient.size();
+        int nbRdvTotal = listeRdv.size();
+
+        System.out.println("Statistiques générales :");
+        System.out.printf("- Nombre de médecins : %d\n", nbMedecins);
+        System.out.printf("- Nombre de patients : %d\n", nbPatients);
+        System.out.printf("- Nombre total de rendez-vous : %d\n", nbRdvTotal);
+
+        if (nbMedecins > 0) {
+            System.out.println("\nStatistiques par médecin :");
+            System.out.println("----------------------------------------");
+
+            for (Medecin medecin : listeMed) {
+                int nbRdvMedecin = getRdvMedecin(medecin).size();
+
+                System.out.printf("\nDr. %s %s (%s)\n",
+                        medecin.getNom(),
+                        medecin.getPrenom(),
+                        medecin.getSpecialite());
+                System.out.printf("- Nombre de rendez-vous : %d\n", nbRdvMedecin);
+
+                if (nbRdvTotal > 0) {
+                    double pourcentage = (nbRdvMedecin * 100.0) / nbRdvTotal;
+                    System.out.printf("- Pourcentage des RDV : %.1f%%\n", pourcentage);
+                }
+            }
+        }
+        System.out.println("----------------------------------------");
+    }
 }
